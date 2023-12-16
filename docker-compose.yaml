@@ -22,7 +22,7 @@ services:
       dockerfile: Dockerfile
     image: zaphodbrox/api:latest
     container_name: api
-    entrypoint: dockerize -wait tcp://db:3306 -timeout 20s docker-entrypoint.sh
+
     networks:
       - nodenet
     volumes:

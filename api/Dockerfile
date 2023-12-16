@@ -9,6 +9,12 @@ RUN apk update --no-cache \
     && wget -O - https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz | tar xzf - -C /usr/local/bin \
     && apk del wget
 
+COPY src .
+
 EXPOSE 3003
 
+ENTRYPOINT ["dockerize", "-wait", "tcp://db:3306", "-timeout", "20s" ]
+
 CMD ["node", "src/server"]
+
+
